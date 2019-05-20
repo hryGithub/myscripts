@@ -9,6 +9,11 @@ passwd='tigerft123!'
 #host  api只运行在第一台
 hosts=(192.168.2.204 192.168.7.208)
 
+if [ "$1"x = prex ];then
+	hosts=(192.168.101.14)
+fi
+
+
 #临时存放文件夹
 src_dir=/data/deploy/go
 
@@ -42,7 +47,7 @@ for host in ${hosts[@]};do
 	ssh -fn root@$host  "/opt/app/blockchain/$appname/restart_service.sh"
 	
 	if [[  $appname =~ 'btcapiserver' || $appname =~ 'usdtapiserver' ]];then
-		continue
+		break
 	fi
 done
 

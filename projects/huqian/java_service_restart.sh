@@ -2,7 +2,16 @@
 
 datetime=`date "+%Y/%m/%d %H:%M:%S"`
 #获取app服务器列表
-a=`python /data/scripts/otc_app.py $appname`
+if [ "$env"x = prex ];then
+        appfile=/data/scripts/otc_app_pre.py
+elif [ "$env"x = prex ];then
+        appfile=/data/scripts/otc_app.py
+else
+        echo "环境信息不正确，请检查配置!"
+        exit 1
+fi
+
+a=`python $appfile $appname`
 
 if [ ! -n "$a" ];then
         echo "找不到$appname的ip"
@@ -19,4 +28,4 @@ for ip in ${arr[@]};do
 done
 
 #JENKINS标识
-echo "[DESC]$appname restart at $datetime"
+echo "[DESC]$datetime重启$env环境的$appname应用"
