@@ -11,9 +11,9 @@ AccessKeySecret = ''
 BucketName = 'viausdfile'
 
 
-def upload_file(f):
+def upload_file(oss_dir, f):
     filename = os.path.basename(f)
-    ObjectName = 'app/android/' + filename
+    ObjectName = oss_dir.strip("/") + "/" + filename
     print(filename)
     auth = oss2.Auth(AccessKeyId, AccessKeySecret)
     bucket = oss2.Bucket(auth, EndPoint, BucketName)
@@ -21,5 +21,4 @@ def upload_file(f):
 
 
 if __name__ == "__main__":
-    upload_file(sys.argv[1])
-    
+    upload_file(sys.argv[1], sys.argv[2])
