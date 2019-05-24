@@ -37,8 +37,8 @@ worker_processes  4;
 
 
 events {
-    use epoll;
     worker_connections  10240;
+    multi_accept on;
 }
 
 
