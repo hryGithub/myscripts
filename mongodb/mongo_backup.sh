@@ -4,7 +4,8 @@
 #crontab示例
 #0 0 * * * /bin/bash cut_log.sh
 
-rq=`date -d "yesterday" +%Y%m%d`
+# rq=`date -d "yesterday" +%Y%m%d`
+rq=`date +%Y%m%d-%H`
 backupcmd=/usr/bin/mongodump
 dbhost=127.0.0.1
 port=27017
