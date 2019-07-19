@@ -19,6 +19,7 @@ def sshclient_execmd(hostname, port, username, password, command):
     print(stdout.read())
     s.close()
 
+
 # 重启应用
 def restart_app(app):
     username = 'root'
