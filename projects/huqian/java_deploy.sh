@@ -32,7 +32,7 @@ fi
 
 
 #获取app服务器列表
-a=`python $(dirname $0)/apps.py $appname`
+hosts=`python $(dirname $0)/apps.py $appname`
 
 if [ ! -n "$a" ];then
 	echo "找不到$appname的ip"
