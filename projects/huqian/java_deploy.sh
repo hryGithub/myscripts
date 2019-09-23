@@ -32,7 +32,7 @@ fi
 
 
 #获取app服务器列表
-a=`python /data/scripts/deploy.py $appname`
+a=`python $(dirname $0)/apps.py $appname`
 
 if [ ! -n "$a" ];then
 	echo "找不到$appname的ip"
@@ -56,14 +56,9 @@ if [ ! -f $src_dir/$version.war ];then
 		exit 1
 fi
 
-OLD_IFS="$IFS" 
-IFS="," 
-arr=($a) 
-IFS="$OLD_IFS"
-
 
 #循环发布
-for ip in ${arr[@]};do
+for ip in ${hosts[@]};do
 	ssh root@$ip "mkdir -p $sdir/$appname/$datetime"
     scp $src_dir/$version.war root@$ip:$sdir/$appname/$datetime/
     ssh root@$ip "cd $sdir/$appname/$datetime/ && jar xf $version.war"
