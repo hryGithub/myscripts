@@ -1,8 +1,9 @@
 #!/usr/bin/python
 # -*- coding:utf-8 -*-
 
-import sys,os
+import sys, os
 import urllib.parse
+import urllib.request
 import base64
 import hmac
 import hashlib
@@ -59,18 +60,18 @@ def compose_url(user_params):
 def make_request(user_params, quiet=False):
     url = compose_url(user_params)
     print(url)
-    # try:
-    #     req = urllib2.Request(url)
-    #     res_data = urllib2.urlopen(req)
-    #     res = res_data.read()
-    #     return res
-    # except:
-    #     return user_params['ObjectPath'] + ' refresh failed!'
+    try:
+        req = urllib.request.Request(url)
+        res_data = urllib.request.urlopen(req)
+        res = res_data.read()
+        return res
+    except Exception as e:
+        return user_params['ObjectPath'] + ' refresh failed!'
 
 if __name__ == "__main__":
     cdn_server_address = 'http://cdn.aliyun.com'
-    access_key_id = 'id'
-    access_key_secret = 'secret'
+    access_key_id = 'ID'
+    access_key_secret = 'SECRET'
     objectpath = sys.argv[1]
-    user_params = {'Action': 'RefreshObjectCaches', 'ObjectPath': objectpath, 'ObjectType': 'File'}
+    user_params = {'Action': 'RefreshObjectCaches', 'ObjectPath': objectpath, 'ObjectType': 'Directory'}
     make_request(user_params)
