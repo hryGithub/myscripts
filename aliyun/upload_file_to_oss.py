@@ -27,7 +27,7 @@ def upload_file(oss_dir, f):
     # 软链权限
     bucket.put_object_acl('apkdownload/innowealth-release.apk', oss2.OBJECT_ACL_PUBLIC_READ)
 
-    print("文件下载地址为:%s" % "https://" + BucketName + "." + EndPoint + ObjectName)
+    print("文件下载地址为:%s" % "https://" + BucketName + "." + EndPoint + "/" + ObjectName)
     
 
 
