@@ -4,7 +4,6 @@
 import time, smtplib, sys
 from selenium import webdriver
 from selenium.webdriver.support.ui import Select
-from selenium.webdriver.common.keys import Keys
 from email.mime.text import MIMEText
 
 
