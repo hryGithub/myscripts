@@ -10,34 +10,31 @@ from email.mime.text import MIMEText
 
 def h3c_func():
     WEBSITE = 'http://192.168.16.1/userLogin.asp'
-
     driver = webdriver.Chrome()
-
     driver.get(WEBSITE)
 
+    # 登陆
     element = driver.find_element_by_xpath("//input[@name='account']")
     element.send_keys("admin")
-
     element = driver.find_element_by_xpath("//input[@name='password']")
     element.send_keys("abc12345")
-
     driver.find_element_by_id("longin_button").click()
 
-    driver.get('http://192.168.16.1/home.asp')
     # 左侧菜单
+    time.sleep(1)   # 等待1s
     fr = driver.find_element_by_xpath("/html/frameset/frameset/frameset/frame")
     driver.switch_to.frame(fr)
     driver.find_element_by_xpath("/html/body/form/table[1]/tbody/tr/td/div/ul/li[4]/a").click()
     time.sleep(1)
     driver.find_element_by_xpath("/html/body/form/table[1]/tbody/tr/td/div/ul/li[4]/ul/li[2]/a").click()
 
-    #右侧菜单
+    # 右侧菜单
     driver.switch_to.default_content()
     fr = driver.find_element_by_xpath("/html/frameset/frameset/frameset/frameset/frame[1]")
     driver.switch_to.frame(fr)
     driver.switch_to.frame("main_iframe_0")
 
-
+    # 填充数据
     s1 = Select(driver.find_element_by_id("search_item"))
     s1.select_by_index(4)
     s2 = Select(driver.find_element_by_id("ap_status"))
