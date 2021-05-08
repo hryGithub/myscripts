@@ -49,6 +49,7 @@ def h3c_func():
         s = td.find_elements_by_tag_name("td")[10].text
         if s != "备注":
             roomlist.append(s)
+    driver.close()
     return roomlist
 
 
