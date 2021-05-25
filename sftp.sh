@@ -21,6 +21,6 @@ for FILE in ${FILES};do
 		cd ${DESDIR}
 		lcd ${SRCDIR}
 		put ${FILE}
-		by
+		bye
 EOF
 done
